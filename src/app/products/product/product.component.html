@@ -1,0 +1,60 @@
+<h1 class="display">Product Details</h1>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+  <div class="form-group">
+    <input name="title" 
+    #title="ngModel" 
+    [(ngModel)]="service.formData.title" 
+    class="form-control" 
+    placeholder="Title" 
+    required>
+    <div *ngIf="title.invalid && title.touched" class="validation-error">
+      Please enter a title.
+    </div>
+  </div>
+  <div class="form-group">
+    <input name="description" 
+    #description="ngModel" 
+    [(ngModel)]="service.formData.description" 
+    class="form-control" 
+    placeholder="Description"
+    minlength=2
+    required>
+    <div *ngIf="!description.valid && description.touched" class="validation-error">
+        <div *ngIf="description.errors.required">
+          Please enter a description.
+        </div>
+        <div *ngIf="description.errors.minlength">
+          Please enter a description that is at least {{ description.errors.minlength.requiredLength }} characters long.
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <input name="prodCode" 
+      #prodCode="ngModel" 
+      [(ngModel)]="service.formData.prodCode" 
+      class="form-control" 
+      placeholder="Product Code"
+      required>
+      <div *ngIf="prodCode.invalid && prodCode.touched" class="validation-error">
+          Please enter a product code.
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+      <input name="price" 
+      #price="ngModel" 
+      [(ngModel)]="service.formData.price" 
+      class="form-control" 
+      placeholder="Price"
+      required
+      pattern="^\d+\.\d{2}$">
+        <div *ngIf="price.invalid && price.touched" class="validation-error">
+            Please enter a price with two decimal places.
+        </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid" class="btn btn-lg btn-block btn-info">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <thead>
+    <th>Prod. Code</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of list">
+      <td (click)="onEdit(prod)">{{prod.prodCode}}</td>
+      <td (click)="onEdit(prod)">{{prod.title}}</td>
+      <td (click)="onEdit(prod)">{{prod.description}}</td>
+      <td (click)="onEdit(prod)">${{prod.price}}</td>
+      <td><a class="btn text-danger" (click)="onDelete(prod.id)"><i class="fa fa-trash"></i></a></td>
+    </tr>
+  </tbody>
+</table>
